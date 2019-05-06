@@ -1,44 +1,59 @@
 <template>
   <div id="app">
-      <b-navbar toggleable="lg" type="dark" variant=dark>
-    <b-navbar-brand href="#"><img src="./assets/sap-logo.png"> </b-navbar-brand>
-      <b-navbar-nav>
-        <b-nav-item>Dev Central</b-nav-item>
-      </b-navbar-nav>
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
-    <!-- <img src="./assets/logo.png"> -->
-    <WorkspaceManager></WorkspaceManager>
+    <b-navbar toggleable="lg" type="dark" variant="dark">
+      <b-navbar-brand> 
+        <img src="./assets/sap-logo.png">
+      </b-navbar-brand>
+      <b-nav-text style="color:white;">
+        <b>Dev Central</b>
+      </b-nav-text>
+    </b-navbar>
+    <WorkspaceManager @parentCreateWs="createWs" v-if="wsm"/>
+    <CreateWorkspace v-else/>
   </div>
 </template>
 
 <script>
-import WorkspaceManager from './components/WorkspaceManager'
+import WorkspaceManager from "./components/WorkspaceManager";
+import CreateWorkspace from "./components/CreateWorkspace";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    WorkspaceManager
+    WorkspaceManager,
+    CreateWorkspace
+  },
+  data() {
+    return {
+      wsm: true
+    };
+  },
+  methods: {
+    createWs() {
+      this.$emit("parentCreateWs");
+      this.wsm = false;
+    }
   }
-}
+};
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+/* .row{
+    display: flex;
+} */
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 </style>
