@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand> 
+      <b-navbar-brand>
         <img src="./assets/sap-logo.png">
       </b-navbar-brand>
       <b-nav-text style="color:white;">
@@ -12,6 +12,7 @@
     <CreateWorkspace v-else/>
   </div>
 </template>
+
 
 <script>
 import WorkspaceManager from "./components/WorkspaceManager";
